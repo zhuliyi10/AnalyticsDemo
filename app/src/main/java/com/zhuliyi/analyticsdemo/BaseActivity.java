@@ -27,9 +27,7 @@ public class BaseActivity extends AppCompatActivity {
         long duration = System.currentTimeMillis() - startTime;
         String pageName= getPageName();
         Log.d(TAG, "页面"+pageName+"的停留时间："+duration/1000+"s");
-        MANPageHitBuilder pageHitBuilder = new MANPageHitBuilder(pageName);
-        pageHitBuilder.setDurationOnPage(duration);
-        MANServiceProvider.getService().getMANAnalytics().getDefaultTracker().send(pageHitBuilder.build());
+        AnalyticsUtils.sendPagePathEvent(pageName,duration,null);
     }
 
     protected String getPageName(){

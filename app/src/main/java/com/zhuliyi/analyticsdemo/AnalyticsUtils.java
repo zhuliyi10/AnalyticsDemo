@@ -22,7 +22,9 @@ public class AnalyticsUtils {
     public static void sendPagePathEvent(String pageName, long duration, Map<String, String> properties){
         MANPageHitBuilder pageHitBuilder = new MANPageHitBuilder(pageName);
         pageHitBuilder.setDurationOnPage(duration);
-        pageHitBuilder.setProperties(properties);
+        if(properties!=null) {
+            pageHitBuilder.setProperties(properties);
+        }
         MANServiceProvider.getService().getMANAnalytics().getDefaultTracker().send(pageHitBuilder.build());
     }
 
